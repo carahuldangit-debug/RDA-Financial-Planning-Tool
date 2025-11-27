@@ -1,0 +1,1943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDA Tax Advisory - Financial Planning Questionnaire</title>
+    
+    <style>
+        /* Inline all styles - no external dependencies */
+        @import url('data:text/css;base64,');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a4d6d;
+            --secondary: #2d7a9e;
+            --accent: #d4a574;
+            --success: #2d8659;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e8f1f5 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: var(--shadow-lg);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-section p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .contact-info {
+            text-align: right;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .progress-bar-container {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .progress-step::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            background: var(--border);
+            z-index: -1;
+        }
+
+        .progress-step:last-child::after {
+            display: none;
+        }
+
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--border);
+            color: var(--text-muted);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .progress-step.active .step-circle {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .progress-step.completed .step-circle {
+            background: var(--success);
+            color: white;
+        }
+
+        .step-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .progress-step.active .step-label {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.5s ease;
+            border-radius: 4px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .form-required {
+            color: var(--danger);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 77, 109, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .radio-option,
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .radio-option input[type="radio"],
+        .checkbox-option input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%);
+            border-left: 4px solid var(--primary);
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid var(--warning);
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: space-between;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(26, 77, 109, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-light);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #26704d;
+            transform: translateY(-2px);
+        }
+
+        .risk-score-display {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid var(--success);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .risk-score-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        .risk-profile-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: var(--success);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th {
+            background: var(--bg-light);
+            padding: 0.875rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--primary);
+            border-bottom: 2px solid var(--border);
+        }
+
+        td {
+            padding: 0.875rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .results-section {
+            display: none;
+        }
+
+        .results-section.active {
+            display: block;
+        }
+
+        .recommendation-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .recommendation-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .recommendation-item {
+            display: flex;
+            gap: 1rem;
+            margin: 0.75rem 0;
+            align-items: start;
+        }
+
+        .recommendation-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-top: 2px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 0.25rem;
+        }
+
+        .export-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .contact-info {
+                text-align: center;
+            }
+
+            .logo-section h1 {
+                font-size: 1.5rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            border: 4px solid var(--border);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media print {
+            .header, .progress-bar-container, .export-buttons, .btn {
+                display: none;
+            }
+            body {
+                background: white;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-content">
+        <div class="logo-section">
+            <h1>RDA TAX ADVISORY SERVICES PVT LTD</h1>
+            <p>Comprehensive Financial Planning Questionnaire</p>
+        </div>
+        <div class="contact-info">
+            <div>📍 Baner, Pune - 411045</div>
+            <div>📞 +91 8626045059 | +91 8983145059</div>
+            <div>✉️ info@rd-assoc.com</div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <!-- Progress Bar -->
+    <div class="progress-bar-container">
+        <div class="progress-steps">
+            <div class="progress-step active" data-step="1">
+                <div class="step-circle">1</div>
+                <div class="step-label">Personal Info</div>
+            </div>
+            <div class="progress-step" data-step="2">
+                <div class="step-circle">2</div>
+                <div class="step-label">Income & Assets</div>
+            </div>
+            <div class="progress-step" data-step="3">
+                <div class="step-circle">3</div>
+                <div class="step-label">Risk Profile</div>
+            </div>
+            <div class="progress-step" data-step="4">
+                <div class="step-circle">4</div>
+                <div class="step-label">Goals & Tax</div>
+            </div>
+            <div class="progress-step" data-step="5">
+                <div class="step-circle">5</div>
+                <div class="step-label">Results</div>
+            </div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 20%"></div>
+        </div>
+    </div>
+
+    <!-- Form -->
+    <form id="financialPlanForm">
+        
+        <!-- Section 1: Personal Information -->
+        <div class="form-section active" data-section="1">
+            <div class="card">
+                <h2 class="section-title">📋 Personal Information</h2>
+                <p class="section-subtitle">Let's start with your basic details</p>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Full Name <span class="form-required">*</span></label>
+                        <input type="text" name="fullName" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Date of Birth <span class="form-required">*</span></label>
+                        <input type="date" name="dob" class="form-input" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Gender <span class="form-required">*</span></label>
+                        <select name="gender" class="form-select" required>
+                            <option value="">Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Marital Status <span class="form-required">*</span></label>
+                        <select name="maritalStatus" class="form-select" required>
+                            <option value="">Select</option>
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                            <option value="Divorced">Divorced</option>
+                            <option value="Widowed">Widowed</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Mobile Number <span class="form-required">*</span></label>
+                        <input type="tel" name="mobile" class="form-input" required pattern="[0-9]{10}">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address <span class="form-required">*</span></label>
+                        <input type="email" name="email" class="form-input" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">City <span class="form-required">*</span></label>
+                    <input type="text" name="city" class="form-input" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">PAN Number <span class="form-required">*</span></label>
+                        <input type="text" name="pan" class="form-input" required pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Number of Dependents</label>
+                        <input type="number" name="dependents" class="form-input" min="0">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Occupation <span class="form-required">*</span></label>
+                        <select name="occupation" class="form-select" required>
+                            <option value="">Select</option>
+                            <option value="Salaried - Private">Salaried - Private Sector</option>
+                            <option value="Salaried - Government">Salaried - Government/PSU</option>
+                            <option value="Self-Employed">Self-Employed Professional</option>
+                            <option value="Business Owner">Business Owner</option>
+                            <option value="Retired">Retired</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Years of Experience</label>
+                        <input type="number" name="experience" class="form-input" min="0">
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <div></div>
+                    <button type="button" class="btn btn-primary" onclick="nextSection()">Next →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Income & Assets -->
+        <div class="form-section" data-section="2">
+            <div class="card">
+                <h2 class="section-title">💰 Income & Assets</h2>
+                <p class="section-subtitle">Tell us about your financial position</p>
+
+                <div class="form-group">
+                    <label class="form-label">Your Annual Income (₹) <span class="form-required">*</span></label>
+                    <select name="annualIncome" class="form-select" required>
+                        <option value="">Select Range</option>
+                        <option value="500000">Up to ₹5 lakhs</option>
+                        <option value="750000">₹5-10 lakhs</option>
+                        <option value="1250000">₹10-15 lakhs</option>
+                        <option value="2000000">₹15-25 lakhs</option>
+                        <option value="3750000">₹25-50 lakhs</option>
+                        <option value="7500000">₹50 lakhs - ₹1 crore</option>
+                        <option value="15000000">Above ₹1 crore</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Spouse's Annual Income (₹)</label>
+                    <input type="number" name="spouseIncome" class="form-input" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Monthly Household Expenses (₹) <span class="form-required">*</span></label>
+                    <input type="number" name="monthlyExpenses" class="form-input" required min="0">
+                </div>
+
+                <div class="info-box">
+                    <strong>💡 Assets Breakdown</strong><br>
+                    Please provide approximate values for your current assets
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Savings Account (₹)</label>
+                        <input type="number" name="savingsAccount" class="form-input" min="0" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Fixed Deposits (₹)</label>
+                        <input type="number" name="fixedDeposits" class="form-input" min="0" value="0">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Equity Mutual Funds (₹)</label>
+                        <input type="number" name="equityMF" class="form-input" min="0" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Direct Stocks (₹)</label>
+                        <input type="number" name="directStocks" class="form-input" min="0" value="0">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">EPF/PF (₹)</label>
+                        <input type="number" name="epf" class="form-input" min="0" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">PPF (₹)</label>
+                        <input type="number" name="ppf" class="form-input" min="0" value="0">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">NPS (₹)</label>
+                        <input type="number" name="nps" class="form-input" min="0" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Gold (₹)</label>
+                        <input type="number" name="gold" class="form-input" min="0" value="0">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Real Estate Value (₹)</label>
+                    <input type="number" name="realEstate" class="form-input" min="0" value="0">
+                </div>
+
+                <div class="info-box">
+                    <strong>📊 Liabilities</strong><br>
+                    Enter your outstanding loans and debts
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Home Loan Outstanding (₹)</label>
+                        <input type="number" name="homeLoan" class="form-input" min="0" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Home Loan Monthly EMI (₹)</label>
+                        <input type="number" name="homeLoanEMI" class="form-input" min="0" value="0">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Other Loans Outstanding (₹)</label>
+                        <input type="number" name="otherLoans" class="form-input" min="0" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Other Loan EMI (₹)</label>
+                        <input type="number" name="otherLoanEMI" class="form-input" min="0" value="0">
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" onclick="prevSection()">← Previous</button>
+                    <button type="button" class="btn btn-primary" onclick="nextSection()">Next →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Risk Profiling -->
+        <div class="form-section" data-section="3">
+            <div class="card">
+                <h2 class="section-title">🎲 Risk Profile Assessment</h2>
+                <p class="section-subtitle">Help us understand your investment comfort level</p>
+
+                <div class="warning-box">
+                    ⚠️ <strong>Important:</strong> Answer honestly - there are no "right" answers. This helps us create the best plan for YOU.
+                </div>
+
+                <!-- Risk Question 1 -->
+                <div class="form-group">
+                    <label class="form-label">1. Age Group</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ1" value="5" required>
+                            Below 30 years (5 pts)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ1" value="4">
+                            30-40 years (4 pts)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ1" value="3">
+                            40-50 years (3 pts)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ1" value="2">
+                            50-60 years (2 pts)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ1" value="1">
+                            Above 60 years (1 pt)
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Risk Question 2 -->
+                <div class="form-group">
+                    <label class="form-label">2. Investment Time Horizon - When will you need this money?</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ2" value="1" required>
+                            Less than 3 years (1 pt)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ2" value="2">
+                            3-5 years (2 pts)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ2" value="3">
+                            5-10 years (3 pts)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ2" value="4">
+                            10-15 years (4 pts)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ2" value="5">
+                            More than 15 years (5 pts)
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Risk Question 3 -->
+                <div class="form-group">
+                    <label class="form-label">3. Primary Investment Objective</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ3" value="1" required>
+                            Capital Preservation - Don't lose money (1 pt)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ3" value="2">
+                            Regular Income - Steady returns (2 pts)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ3" value="3">
+                            Balanced - Growth + Safety (3 pts)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ3" value="4">
+                            Capital Appreciation - Growth focused (4 pts)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ3" value="5">
+                            Aggressive Wealth Creation (5 pts)
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Risk Question 4 -->
+                <div class="form-group">
+                    <label class="form-label">4. Reaction to Market Loss - Your ₹10L investment drops to ₹8L (20% loss). You will:</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ4" value="1" required>
+                            Sell everything immediately (1 pt)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ4" value="2">
+                            Sell 50%, move to safer options (2 pts)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ4" value="3">
+                            Hold and wait for recovery (3 pts)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ4" value="4">
+                            Hold and continue investing (4 pts)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ4" value="5">
+                            Invest more - buying opportunity! (5 pts)
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Risk Question 5 -->
+                <div class="form-group">
+                    <label class="form-label">5. Investment Experience</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ5" value="1" required>
+                            No experience - Completely new (1 pt)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ5" value="2">
+                            Limited - Only FD/PPF/Savings (2 pts)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ5" value="3">
+                            Moderate - Some Mutual Funds (3 pts)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ5" value="4">
+                            Good - MF + Some stocks (4 pts)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ5" value="5">
+                            Extensive - Active trader (5 pts)
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Risk Question 6 -->
+                <div class="form-group">
+                    <label class="form-label">6. Emergency Fund Status</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ6" value="1" required>
+                            No emergency fund (1 pt)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ6" value="2">
+                            Less than 3 months expenses (2 pts)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ6" value="3">
+                            3-6 months expenses (3 pts)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ6" value="4">
+                            6-12 months expenses (4 pts)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ6" value="5">
+                            More than 12 months (5 pts)
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Risk Question 7 -->
+                <div class="form-group">
+                    <label class="form-label">7. Expected Returns</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ7" value="1" required>
+                            5-7% (FD-like, guaranteed) (1 pt)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ7" value="2">
+                            7-10% (Stable with minimal risk) (2 pts)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ7" value="3">
+                            10-12% (Moderate, some volatility OK) (3 pts)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ7" value="4">
+                            12-15% (Higher returns, volatility OK) (4 pts)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="riskQ7" value="5">
+                            15%+ (Maximum returns, high volatility OK) (5 pts)
+                        </label>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" onclick="prevSection()">← Previous</button>
+                    <button type="button" class="btn btn-primary" onclick="nextSection()">Next →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Goals & Tax Planning -->
+        <div class="form-section" data-section="4">
+            <div class="card">
+                <h2 class="section-title">🎯 Financial Goals & Tax Planning</h2>
+                <p class="section-subtitle">Your aspirations and tax optimization</p>
+
+                <div class="info-box">
+                    <strong>🎯 Priority Goals</strong><br>
+                    Select your top 3 financial priorities
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Priority 1 (Most Important)</label>
+                    <select name="priority1" class="form-select" required>
+                        <option value="">Select Goal</option>
+                        <option value="Emergency Fund">Emergency Fund</option>
+                        <option value="Children Education">Children's Education</option>
+                        <option value="Children Marriage">Children's Marriage</option>
+                        <option value="Home Purchase">Home Purchase/Upgrade</option>
+                        <option value="Retirement">Retirement Planning</option>
+                        <option value="Debt Repayment">Debt Repayment</option>
+                        <option value="Wealth Creation">Wealth Creation</option>
+                        <option value="Business">Start Business</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Priority 2</label>
+                        <select name="priority2" class="form-select">
+                            <option value="">Select Goal</option>
+                            <option value="Emergency Fund">Emergency Fund</option>
+                            <option value="Children Education">Children's Education</option>
+                            <option value="Children Marriage">Children's Marriage</option>
+                            <option value="Home Purchase">Home Purchase/Upgrade</option>
+                            <option value="Retirement">Retirement Planning</option>
+                            <option value="Debt Repayment">Debt Repayment</option>
+                            <option value="Wealth Creation">Wealth Creation</option>
+                            <option value="Business">Start Business</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Priority 3</label>
+                        <select name="priority3" class="form-select">
+                            <option value="">Select Goal</option>
+                            <option value="Emergency Fund">Emergency Fund</option>
+                            <option value="Children Education">Children's Education</option>
+                            <option value="Children Marriage">Children's Marriage</option>
+                            <option value="Home Purchase">Home Purchase/Upgrade</option>
+                            <option value="Retirement">Retirement Planning</option>
+                            <option value="Debt Repayment">Debt Repayment</option>
+                            <option value="Wealth Creation">Wealth Creation</option>
+                            <option value="Business">Start Business</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Children's Education Target (₹)</label>
+                    <input type="number" name="educationTarget" class="form-input" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Years to Education Goal</label>
+                    <input type="number" name="educationYears" class="form-input" min="0">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Desired Retirement Age</label>
+                        <input type="number" name="retirementAge" class="form-input" min="40" max="80" value="60">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Monthly Income Needed in Retirement (₹)</label>
+                        <input type="number" name="retirementIncome" class="form-input" min="0">
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <strong>💵 Tax Planning</strong><br>
+                    Help us optimize your tax savings
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Current Tax Regime</label>
+                    <select name="taxRegime" class="form-select">
+                        <option value="Old">Old Regime (with deductions)</option>
+                        <option value="New">New Regime (without deductions)</option>
+                        <option value="Not Sure">Not Sure</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Current 80C Investments This FY (₹)</label>
+                    <input type="number" name="section80C" class="form-input" min="0" max="150000" value="0">
+                    <small style="color: var(--text-muted)">Maximum limit: ₹1,50,000</small>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Life Insurance Sum Assured (₹)</label>
+                        <input type="number" name="lifeInsurance" class="form-input" min="0" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Health Insurance Coverage (₹)</label>
+                        <input type="number" name="healthInsurance" class="form-input" min="0" value="0">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Monthly Investment Capacity (₹)</label>
+                    <input type="number" name="sipCapacity" class="form-input" min="0" required>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" onclick="prevSection()">← Previous</button>
+                    <button type="button" class="btn btn-success" onclick="generateResults()">Generate My Plan 🚀</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+    <!-- Results Section -->
+    <div class="results-section" id="resultsSection">
+        <div class="card">
+            <h2 class="section-title">🎉 Your Personalized Financial Plan</h2>
+            <p class="section-subtitle">Based on your comprehensive financial profile</p>
+
+            <!-- Key Stats -->
+            <div class="stats-grid" id="statsGrid"></div>
+
+            <!-- Risk Profile Display -->
+            <div class="risk-score-display" id="riskDisplay"></div>
+
+            <!-- Recommendations -->
+            <div id="recommendationsContainer"></div>
+
+            <!-- Export Buttons -->
+            <div class="export-buttons">
+                <button type="button" class="btn btn-success" onclick="exportToExcel()">
+                    📊 Download Excel Report
+                </button>
+                <button type="button" class="btn btn-primary" onclick="exportToWord()">
+                    📄 Download Word Report
+                </button>
+                <button type="button" class="btn btn-secondary" onclick="window.print()">
+                    🖨️ Print Report
+                </button>
+            </div>
+
+            <div class="button-group" style="margin-top: 2rem;">
+                <button type="button" class="btn btn-secondary" onclick="resetForm()">↻ Start New Assessment</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p style="margin-top: 1rem;">Analyzing your financial data...</p>
+    </div>
+</div>
+
+<script>
+// Inline lightweight Excel export library
+(function() {
+    window.SimpleExcel = {
+        arrayToCSV: function(data) {
+            return data.map(row => 
+                row.map(cell => {
+                    const value = String(cell || '');
+                    return value.includes(',') || value.includes('"') || value.includes('\n') 
+                        ? '"' + value.replace(/"/g, '""') + '"'
+                        : value;
+                }).join(',')
+            ).join('\n');
+        },
+        
+        downloadCSV: function(data, filename) {
+            const csv = this.arrayToCSV(data);
+            const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+            URL.revokeObjectURL(link.href);
+        },
+        
+        createWorkbook: function(sheets) {
+            // Generate Excel-compatible HTML format
+            let html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">';
+            html += '<head><meta charset="utf-8"><style>table {border-collapse: collapse;} th, td {border: 1px solid #ddd; padding: 8px;} th {background-color: #4472C4; color: white;}</style></head><body>';
+            
+            sheets.forEach(sheet => {
+                html += '<table><caption style="font-weight:bold; font-size:16px; padding:10px;">' + sheet.name + '</caption>';
+                sheet.data.forEach((row, i) => {
+                    html += '<tr>';
+                    row.forEach(cell => {
+                        html += i === 0 || cell.toString().match(/^[A-Z][a-z]+:?/) ? '<th>' + cell + '</th>' : '<td>' + cell + '</td>';
+                    });
+                    html += '</tr>';
+                });
+                html += '</table><br>';
+            });
+            
+            html += '</body></html>';
+            return html;
+        },
+        
+        downloadWorkbook: function(sheets, filename) {
+            const html = this.createWorkbook(sheets);
+            const blob = new Blob([html], { type: 'application/vnd.ms-excel' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+            URL.revokeObjectURL(link.href);
+        }
+    };
+})();
+
+// Main application code
+let currentSection = 1;
+const totalSections = 4;
+let formData = {};
+
+function autoSave() {
+    const form = document.getElementById('financialPlanForm');
+    const data = new FormData(form);
+    const savedData = {};
+    for (let [key, value] of data.entries()) {
+        savedData[key] = value;
+    }
+    localStorage.setItem('financialPlanData', JSON.stringify(savedData));
+}
+
+function loadSavedData() {
+    const saved = localStorage.getItem('financialPlanData');
+    if (saved) {
+        const data = JSON.parse(saved);
+        for (let key in data) {
+            const input = document.querySelector(`[name="${key}"]`);
+            if (input) {
+                if (input.type === 'radio') {
+                    const radio = document.querySelector(`[name="${key}"][value="${data[key]}"]`);
+                    if (radio) radio.checked = true;
+                } else {
+                    input.value = data[key];
+                }
+            }
+        }
+    }
+}
+
+function nextSection() {
+    if (validateCurrentSection()) {
+        autoSave();
+        currentSection++;
+        updateDisplay();
+    }
+}
+
+function prevSection() {
+    currentSection--;
+    updateDisplay();
+}
+
+function updateDisplay() {
+    document.querySelectorAll('.form-section').forEach(section => {
+        section.classList.remove('active');
+    });
+
+    const activeSection = document.querySelector(`[data-section="${currentSection}"]`);
+    if (activeSection) {
+        activeSection.classList.add('active');
+    }
+
+    document.querySelectorAll('.progress-step').forEach((step, index) => {
+        step.classList.remove('active', 'completed');
+        if (index + 1 === currentSection) {
+            step.classList.add('active');
+        } else if (index + 1 < currentSection) {
+            step.classList.add('completed');
+        }
+    });
+
+    const progress = (currentSection / (totalSections + 1)) * 100;
+    document.getElementById('progressFill').style.width = progress + '%';
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function validateCurrentSection() {
+    const currentForm = document.querySelector(`[data-section="${currentSection}"]`);
+    const inputs = currentForm.querySelectorAll('input[required], select[required]');
+    
+    for (let input of inputs) {
+        if (!input.value) {
+            alert('Please fill all required fields before proceeding.');
+            input.focus();
+            return false;
+        }
+    }
+    return true;
+}
+
+function calculateAge(dob) {
+    const today = new Date();
+    const birthDate = new Date(dob);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
+
+function generateResults() {
+    if (!validateCurrentSection()) return;
+
+    document.getElementById('loading').style.display = 'block';
+
+    setTimeout(() => {
+        const form = document.getElementById('financialPlanForm');
+        const data = new FormData(form);
+        formData = {};
+        for (let [key, value] of data.entries()) {
+            formData[key] = value;
+        }
+
+        const calculations = calculateFinancialMetrics(formData);
+        displayResults(calculations);
+
+        document.querySelectorAll('.form-section').forEach(s => s.style.display = 'none');
+        document.querySelector('.progress-bar-container').style.display = 'none';
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('resultsSection').classList.add('active');
+
+        document.querySelectorAll('.progress-step').forEach(step => {
+            step.classList.add('completed');
+        });
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 2000);
+}
+
+function calculateFinancialMetrics(data) {
+    const age = calculateAge(data.dob);
+    const annualIncome = parseFloat(data.annualIncome) || 0;
+    const spouseIncome = parseFloat(data.spouseIncome) || 0;
+    const totalIncome = annualIncome + spouseIncome;
+    const monthlyExpenses = parseFloat(data.monthlyExpenses) || 0;
+    const annualExpenses = monthlyExpenses * 12;
+
+    const liquidAssets = (parseFloat(data.savingsAccount) || 0) + (parseFloat(data.fixedDeposits) || 0);
+    const equityAssets = (parseFloat(data.equityMF) || 0) + (parseFloat(data.directStocks) || 0);
+    const retirementAssets = (parseFloat(data.epf) || 0) + (parseFloat(data.ppf) || 0) + (parseFloat(data.nps) || 0);
+    const goldAssets = parseFloat(data.gold) || 0;
+    const realEstate = parseFloat(data.realEstate) || 0;
+    
+    const totalAssets = liquidAssets + equityAssets + retirementAssets + goldAssets + realEstate;
+
+    const homeLoan = parseFloat(data.homeLoan) || 0;
+    const otherLoans = parseFloat(data.otherLoans) || 0;
+    const totalLiabilities = homeLoan + otherLoans;
+    
+    const netWorth = totalAssets - totalLiabilities;
+
+    let riskScore = 0;
+    for (let i = 1; i <= 7; i++) {
+        riskScore += parseInt(data[`riskQ${i}`]) || 0;
+    }
+
+    let riskProfile = '';
+    if (riskScore <= 14) riskProfile = 'Conservative';
+    else if (riskScore <= 21) riskProfile = 'Moderately Conservative';
+    else if (riskScore <= 28) riskProfile = 'Moderate';
+    else if (riskScore <= 35) riskProfile = 'Moderately Aggressive';
+    else riskProfile = 'Aggressive';
+
+    let equityAllocation, debtAllocation, goldAllocation;
+    if (riskProfile === 'Conservative') {
+        equityAllocation = 20; debtAllocation = 70; goldAllocation = 10;
+    } else if (riskProfile === 'Moderately Conservative') {
+        equityAllocation = 35; debtAllocation = 55; goldAllocation = 10;
+    } else if (riskProfile === 'Moderate') {
+        equityAllocation = 50; debtAllocation = 40; goldAllocation = 10;
+    } else if (riskProfile === 'Moderately Aggressive') {
+        equityAllocation = 65; debtAllocation = 25; goldAllocation = 10;
+    } else {
+        equityAllocation = 80; debtAllocation = 10; goldAllocation = 10;
+    }
+
+    const currentEquityPct = totalAssets > 0 ? ((equityAssets / totalAssets) * 100).toFixed(1) : 0;
+    const currentDebtPct = totalAssets > 0 ? (((liquidAssets + retirementAssets) / totalAssets) * 100).toFixed(1) : 0;
+    const currentGoldPct = totalAssets > 0 ? ((goldAssets / totalAssets) * 100).toFixed(1) : 0;
+
+    const emergencyFundRequired = monthlyExpenses * 6;
+    const emergencyFundGap = Math.max(0, emergencyFundRequired - liquidAssets);
+
+    const lifeInsuranceRequired = totalIncome * 12;
+    const currentLifeInsurance = parseFloat(data.lifeInsurance) || 0;
+    const lifeInsuranceGap = Math.max(0, lifeInsuranceRequired - currentLifeInsurance);
+
+    const healthInsuranceRequired = 1000000;
+    const currentHealthInsurance = parseFloat(data.healthInsurance) || 0;
+    const healthInsuranceGap = Math.max(0, healthInsuranceRequired - currentHealthInsurance);
+
+    const retirementAge = parseInt(data.retirementAge) || 60;
+    const yearsToRetirement = retirementAge - age;
+    const monthlyRetirementIncome = parseFloat(data.retirementIncome) || (monthlyExpenses * 0.7);
+    const retirementCorpusRequired = monthlyRetirementIncome * 12 * 25;
+    const currentRetirementSavings = retirementAssets;
+    
+    const monthlyRetirementSIP = yearsToRetirement > 0 ? 
+        calculateSIP(retirementCorpusRequired - currentRetirementSavings, yearsToRetirement * 12, 12) : 0;
+
+    const educationTarget = parseFloat(data.educationTarget) || 0;
+    const educationYears = parseFloat(data.educationYears) || 10;
+    const monthlyEducationSIP = educationTarget > 0 ? 
+        calculateSIP(educationTarget, educationYears * 12, 12) : 0;
+
+    const section80C = parseFloat(data.section80C) || 0;
+    const section80CGap = Math.max(0, 150000 - section80C);
+    const potentialTaxSaving = section80CGap * 0.3;
+
+    const sipCapacity = parseFloat(data.sipCapacity) || 0;
+    const savingsRate = totalIncome > 0 ? ((sipCapacity * 12 / totalIncome) * 100).toFixed(1) : 0;
+
+    return {
+        age, totalIncome, annualExpenses, monthlyExpenses,
+        totalAssets, totalLiabilities, netWorth,
+        liquidAssets, equityAssets, retirementAssets, goldAssets, realEstate,
+        riskScore, riskProfile,
+        equityAllocation, debtAllocation, goldAllocation,
+        currentEquityPct, currentDebtPct, currentGoldPct,
+        emergencyFundRequired, emergencyFundGap,
+        lifeInsuranceRequired, lifeInsuranceGap,
+        healthInsuranceRequired, healthInsuranceGap,
+        retirementAge, yearsToRetirement, retirementCorpusRequired,
+        monthlyRetirementSIP, monthlyEducationSIP,
+        section80CGap, potentialTaxSaving,
+        sipCapacity, savingsRate,
+        homeLoan, otherLoans
+    };
+}
+
+function calculateSIP(target, months, returnRate) {
+    if (months <= 0) return 0;
+    const r = returnRate / 100 / 12;
+    const n = months;
+    const sip = (target * r) / (Math.pow(1 + r, n) - 1);
+    return Math.round(sip);
+}
+
+function formatCurrency(amount) {
+    if (amount >= 10000000) {
+        return '₹' + (amount / 10000000).toFixed(2) + ' Cr';
+    } else if (amount >= 100000) {
+        return '₹' + (amount / 100000).toFixed(2) + ' L';
+    } else {
+        return '₹' + amount.toLocaleString('en-IN');
+    }
+}
+
+function displayResults(calc) {
+    const statsHTML = `
+        <div class="stat-card">
+            <div class="stat-value">${calc.age}</div>
+            <div class="stat-label">Years Old</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">${formatCurrency(calc.netWorth)}</div>
+            <div class="stat-label">Net Worth</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">${formatCurrency(calc.totalIncome)}</div>
+            <div class="stat-label">Annual Income</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">${calc.savingsRate}%</div>
+            <div class="stat-label">Savings Rate</div>
+        </div>
+    `;
+    document.getElementById('statsGrid').innerHTML = statsHTML;
+
+    const riskHTML = `
+        <div>
+            <div style="font-size: 1.2rem; font-weight: 600; color: var(--success); margin-bottom: 0.5rem;">Your Risk Score</div>
+            <div class="risk-score-number">${calc.riskScore}/35</div>
+            <div class="risk-profile-badge">${calc.riskProfile}</div>
+            <p style="margin-top: 1rem; color: var(--text-muted);">
+                ${getRiskProfileDescription(calc.riskProfile)}
+            </p>
+        </div>
+    `;
+    document.getElementById('riskDisplay').innerHTML = riskHTML;
+
+    const recommendations = generateRecommendations(calc);
+    document.getElementById('recommendationsContainer').innerHTML = recommendations;
+}
+
+function getRiskProfileDescription(profile) {
+    const descriptions = {
+        'Conservative': 'You prefer capital preservation and stable returns. Focus on debt instruments and fixed income products.',
+        'Moderately Conservative': 'You seek stable returns with minimal risk. A balanced approach with focus on debt and some equity exposure.',
+        'Moderate': 'You are comfortable with moderate volatility for better returns. Balanced allocation between equity and debt.',
+        'Moderately Aggressive': 'You can handle market volatility for higher growth potential. Equity-focused portfolio with some debt.',
+        'Aggressive': 'You seek maximum wealth creation and can handle high volatility. Equity-heavy portfolio for long-term growth.'
+    };
+    return descriptions[profile] || '';
+}
+
+function generateRecommendations(calc) {
+    let html = '<div style="margin-top: 2rem;">';
+
+    html += `
+        <div class="recommendation-card">
+            <h3>🆘 Priority 1: Emergency Fund</h3>
+            <div class="recommendation-item">
+                <div class="recommendation-icon">✓</div>
+                <div>
+                    <strong>Required:</strong> ${formatCurrency(calc.emergencyFundRequired)} (6 months expenses)<br>
+                    <strong>Current:</strong> ${formatCurrency(calc.liquidAssets)}<br>
+                    ${calc.emergencyFundGap > 0 ? 
+                        `<strong style="color: var(--danger)">Gap: ${formatCurrency(calc.emergencyFundGap)}</strong><br>
+                        <strong>Action:</strong> Build emergency fund in savings account or liquid funds immediately` 
+                        : '<strong style="color: var(--success)">✓ Emergency fund is adequate</strong>'
+                    }
+                </div>
+            </div>
+        </div>
+    `;
+
+    if (calc.lifeInsuranceGap > 0 || calc.healthInsuranceGap > 0) {
+        html += `<div class="recommendation-card"><h3>🛡️ Priority 2: Insurance Coverage</h3>`;
+        
+        if (calc.lifeInsuranceGap > 0) {
+            html += `
+                <div class="recommendation-item">
+                    <div class="recommendation-icon">!</div>
+                    <div>
+                        <strong>Life Insurance Gap:</strong> ${formatCurrency(calc.lifeInsuranceGap)}<br>
+                        <strong>Recommended:</strong> Term insurance of ${formatCurrency(calc.lifeInsuranceRequired)}<br>
+                        <strong>Products:</strong> LIC Tech Term, HDFC Life Click 2 Protect, ICICI Pru iProtect Smart
+                    </div>
+                </div>
+            `;
+        }
+
+        if (calc.healthInsuranceGap > 0) {
+            html += `
+                <div class="recommendation-item">
+                    <div class="recommendation-icon">!</div>
+                    <div>
+                        <strong>Health Insurance Gap:</strong> ${formatCurrency(calc.healthInsuranceGap)}<br>
+                        <strong>Recommended:</strong> Family floater of ₹10-25 lakhs<br>
+                        <strong>Products:</strong> Star Health Family Health Optima, Care Advantage, Niva Bupa ReAssure
+                    </div>
+                </div>
+            `;
+        }
+
+        html += '</div>';
+    }
+
+    html += `
+        <div class="recommendation-card">
+            <h3>📊 Priority 3: Portfolio Rebalancing</h3>
+            <div class="recommendation-item">
+                <div class="recommendation-icon">📈</div>
+                <div>
+                    <strong>Recommended Allocation (${calc.riskProfile}):</strong><br>
+                    • Equity: ${calc.equityAllocation}% (Current: ${calc.currentEquityPct}%)<br>
+                    • Debt: ${calc.debtAllocation}% (Current: ${calc.currentDebtPct}%)<br>
+                    • Gold: ${calc.goldAllocation}% (Current: ${calc.currentGoldPct}%)<br><br>
+                    ${getRebalancingAdvice(calc)}
+                </div>
+            </div>
+        </div>
+    `;
+
+    if (calc.yearsToRetirement > 0) {
+        html += `
+            <div class="recommendation-card">
+                <h3>🏖️ Priority 4: Retirement Planning</h3>
+                <div class="recommendation-item">
+                    <div class="recommendation-icon">🎯</div>
+                    <div>
+                        <strong>Years to Retirement:</strong> ${calc.yearsToRetirement} years<br>
+                        <strong>Corpus Required:</strong> ${formatCurrency(calc.retirementCorpusRequired)}<br>
+                        <strong>Current Savings:</strong> ${formatCurrency(calc.retirementAssets)}<br>
+                        <strong>Recommended Monthly SIP:</strong> ${formatCurrency(calc.monthlyRetirementSIP)}<br>
+                        <strong>Products:</strong> NPS (Tax benefit u/s 80CCD), PPF, Equity Mutual Funds (Long term)
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    if (calc.section80CGap > 0) {
+        html += `
+            <div class="recommendation-card">
+                <h3>💵 Priority 5: Tax Optimization</h3>
+                <div class="recommendation-item">
+                    <div class="recommendation-icon">💰</div>
+                    <div>
+                        <strong>Section 80C Gap:</strong> ${formatCurrency(calc.section80CGap)}<br>
+                        <strong>Potential Tax Saving:</strong> ${formatCurrency(calc.potentialTaxSaving)}<br>
+                        <strong>Recommendations:</strong><br>
+                        • ELSS Mutual Funds (₹1.5L limit u/s 80C)<br>
+                        • NPS Additional (₹50K u/s 80CCD(1B))<br>
+                        • Health Insurance (₹25K/50K u/s 80D)<br>
+                        • Home Loan Interest (₹2L u/s 24b)<br>
+                        <strong>Total Possible Deduction:</strong> ₹3.75 - ₹4.25 lakhs
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    html += `
+        <div class="recommendation-card">
+            <h3>🎯 Recommended Investment Products</h3>
+            <div class="recommendation-item">
+                <div class="recommendation-icon">📋</div>
+                <div>
+                    <strong>Based on your ${calc.riskProfile} profile:</strong><br><br>
+                    ${getProductRecommendations(calc.riskProfile)}
+                </div>
+            </div>
+        </div>
+    `;
+
+    html += '</div>';
+    return html;
+}
+
+function getRebalancingAdvice(calc) {
+    let advice = '<strong>Action Items:</strong><br>';
+    
+    const equityDiff = calc.equityAllocation - calc.currentEquityPct;
+    const debtDiff = calc.debtAllocation - calc.currentDebtPct;
+    
+    if (Math.abs(equityDiff) > 10) {
+        if (equityDiff > 0) {
+            advice += `• Increase equity allocation by ${equityDiff.toFixed(0)}% through SIPs in equity mutual funds<br>`;
+        } else {
+            advice += `• Reduce equity exposure by ${Math.abs(equityDiff).toFixed(0)}% and move to debt instruments<br>`;
+        }
+    }
+    
+    if (Math.abs(debtDiff) > 10) {
+        if (debtDiff > 0) {
+            advice += `• Increase debt allocation by ${debtDiff.toFixed(0)}% through debt funds or FDs<br>`;
+        }
+    }
+    
+    if (Math.abs(equityDiff) <= 10 && Math.abs(debtDiff) <= 10) {
+        advice += '• Your current allocation is well-balanced for your risk profile<br>';
+    }
+    
+    return advice;
+}
+
+function getProductRecommendations(profile) {
+    const recommendations = {
+        'Conservative': `
+            <strong>Debt Instruments (70%):</strong><br>
+            • PPF (7.1% tax-free)<br>
+            • Bank FDs (Senior Citizen schemes)<br>
+            • Debt Mutual Funds: HDFC Corporate Bond, ICICI Pru Banking & PSU<br>
+            • Government Securities (G-Secs)<br><br>
+            <strong>Equity (20%):</strong><br>
+            • Large Cap Funds: HDFC Top 100, ICICI Pru Bluechip<br>
+            • Index Funds: Nifty 50, Sensex<br><br>
+            <strong>Gold (10%):</strong><br>
+            • Sovereign Gold Bonds, Gold ETFs
+        `,
+        'Moderately Conservative': `
+            <strong>Debt Instruments (55%):</strong><br>
+            • PPF, NPS (Tier 1)<br>
+            • Debt Mutual Funds: ICICI Pru Credit Risk, Axis Corporate Debt<br>
+            • Hybrid Funds: HDFC Hybrid Debt, ICICI Pru Balanced Advantage<br><br>
+            <strong>Equity (35%):</strong><br>
+            • Large Cap: SBI Bluechip, Mirae Asset Large Cap<br>
+            • Balanced Advantage: HDFC Balanced Advantage, ICICI Pru BAF<br><br>
+            <strong>Gold (10%):</strong><br>
+            • Gold ETFs, Sovereign Gold Bonds
+        `,
+        'Moderate': `
+            <strong>Equity (50%):</strong><br>
+            • Large Cap: Parag Parikh Flexi Cap, PGIM India Midcap Opportunities<br>
+            • Multi Cap: Motilal Oswal Multicap 35, Quant Active<br>
+            • Mid Cap: Axis Midcap, Kotak Emerging Equity<br><br>
+            <strong>Debt (40%):</strong><br>
+            • PPF, NPS Tier 1<br>
+            • Debt Funds: HDFC Corporate Bond, ICICI Pru All Seasons Bond<br><br>
+            <strong>Gold (10%):</strong><br>
+            • Sovereign Gold Bonds
+        `,
+        'Moderately Aggressive': `
+            <strong>Equity (65%):</strong><br>
+            • Flexi Cap: Parag Parikh Flexi Cap, Quant Flexi Cap<br>
+            • Mid Cap: Axis Midcap, Motilal Oswal Midcap<br>
+            • Small Cap: Axis Small Cap, SBI Small Cap (aggressive portion)<br>
+            • Sectoral: Technology, Pharma funds (small allocation)<br><br>
+            <strong>Debt (25%):</strong><br>
+            • NPS, Dynamic Bond Funds<br><br>
+            <strong>Gold (10%):</strong><br>
+            • Gold ETFs
+        `,
+        'Aggressive': `
+            <strong>Equity (80%):</strong><br>
+            • Flexi Cap: Parag Parikh Flexi Cap, PPFAS Flexi Cap<br>
+            • Mid Cap: Quant Mid Cap, Axis Midcap<br>
+            • Small Cap: Nippon India Small Cap, Axis Small Cap<br>
+            • Sectoral/Thematic: IT, Pharma, Infrastructure (tactical allocation)<br>
+            • International: Motilal Oswal Nasdaq 100, PPFAS Flexi Cap (has intl exposure)<br><br>
+            <strong>Debt (10%):</strong><br>
+            • Only for rebalancing purposes<br><br>
+            <strong>Gold (10%):</strong><br>
+            • Gold ETFs for portfolio stability
+        `
+    };
+    
+    return recommendations[profile] || '';
+}
+
+function exportToExcel() {
+    const calc = calculateFinancialMetrics(formData);
+    const timestamp = new Date().toISOString().slice(0,10);
+    const filename = `RDA_Financial_Plan_${formData.fullName.replace(/\s+/g, '_')}_${timestamp}.xls`;
+    
+    const sheets = [
+        {
+            name: 'Personal Info',
+            data: [
+                ['RDA TAX ADVISORY SERVICES PVT LTD'],
+                ['Financial Planning Report'],
+                [''],
+                ['Personal Information'],
+                ['Full Name', formData.fullName],
+                ['Date of Birth', formData.dob],
+                ['Age', calc.age],
+                ['Gender', formData.gender],
+                ['Marital Status', formData.maritalStatus],
+                ['Mobile', formData.mobile],
+                ['Email', formData.email],
+                ['City', formData.city],
+                ['PAN', formData.pan],
+                ['Occupation', formData.occupation]
+            ]
+        },
+        {
+            name: 'Financial Summary',
+            data: [
+                ['Financial Summary'],
+                [''],
+                ['Income & Expenses'],
+                ['Annual Income', calc.totalIncome],
+                ['Annual Expenses', calc.annualExpenses],
+                ['Monthly Expenses', calc.monthlyExpenses],
+                [''],
+                ['Assets'],
+                ['Liquid Assets', calc.liquidAssets],
+                ['Equity Assets', calc.equityAssets],
+                ['Retirement Assets', calc.retirementAssets],
+                ['Gold', calc.goldAssets],
+                ['Real Estate', calc.realEstate],
+                ['Total Assets', calc.totalAssets],
+                [''],
+                ['Liabilities'],
+                ['Home Loan', calc.homeLoan],
+                ['Other Loans', calc.otherLoans],
+                ['Total Liabilities', calc.totalLiabilities],
+                [''],
+                ['Net Worth', calc.netWorth]
+            ]
+        },
+        {
+            name: 'Risk & Recommendations',
+            data: [
+                ['Risk Profile Assessment'],
+                [''],
+                ['Risk Score', calc.riskScore + '/35'],
+                ['Risk Profile', calc.riskProfile],
+                [''],
+                ['Recommended Asset Allocation'],
+                ['Equity', calc.equityAllocation + '%'],
+                ['Debt', calc.debtAllocation + '%'],
+                ['Gold', calc.goldAllocation + '%'],
+                [''],
+                ['Current Asset Allocation'],
+                ['Equity', calc.currentEquityPct + '%'],
+                ['Debt', calc.currentDebtPct + '%'],
+                ['Gold', calc.currentGoldPct + '%'],
+                [''],
+                ['Key Recommendations'],
+                ['Emergency Fund Required', calc.emergencyFundRequired],
+                ['Emergency Fund Gap', calc.emergencyFundGap],
+                ['Life Insurance Gap', calc.lifeInsuranceGap],
+                ['Health Insurance Gap', calc.healthInsuranceGap],
+                ['80C Tax Saving Gap', calc.section80CGap],
+                ['Potential Tax Saving', calc.potentialTaxSaving]
+            ]
+        }
+    ];
+    
+    SimpleExcel.downloadWorkbook(sheets, filename);
+}
+
+function exportToWord() {
+    const calc = calculateFinancialMetrics(formData);
+    
+    let htmlContent = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <style>
+                body { font-family: Arial, sans-serif; margin: 40px; }
+                h1 { color: #1a4d6d; border-bottom: 3px solid #d4a574; padding-bottom: 10px; }
+                h2 { color: #2d7a9e; margin-top: 30px; }
+                h3 { color: #1a4d6d; }
+                table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+                th { background-color: #1a4d6d; color: white; padding: 10px; text-align: left; }
+                td { border: 1px solid #ddd; padding: 10px; }
+                .highlight { background-color: #f0f9ff; padding: 15px; border-left: 4px solid #2d7a9e; margin: 20px 0; }
+                .recommendation { background-color: #fef3c7; padding: 15px; margin: 15px 0; border-radius: 5px; }
+                .footer { margin-top: 50px; padding-top: 20px; border-top: 2px solid #ddd; font-size: 12px; color: #666; }
+            </style>
+        </head>
+        <body>
+            <h1>RDA TAX ADVISORY SERVICES PVT LTD</h1>
+            <h2>Comprehensive Financial Planning Report</h2>
+            <p><strong>Date:</strong> ${new Date().toLocaleDateString('en-IN')}</p>
+            <p><strong>Prepared for:</strong> ${formData.fullName}</p>
+
+            <div class="highlight">
+                <h3>Executive Summary</h3>
+                <p><strong>Age:</strong> ${calc.age} years</p>
+                <p><strong>Net Worth:</strong> ${formatCurrency(calc.netWorth)}</p>
+                <p><strong>Annual Income:</strong> ${formatCurrency(calc.totalIncome)}</p>
+                <p><strong>Risk Profile:</strong> ${calc.riskProfile} (Score: ${calc.riskScore}/35)</p>
+                <p><strong>Savings Rate:</strong> ${calc.savingsRate}%</p>
+            </div>
+
+            <h2>1. Personal Information</h2>
+            <table>
+                <tr><td><strong>Full Name</strong></td><td>${formData.fullName}</td></tr>
+                <tr><td><strong>Date of Birth</strong></td><td>${formData.dob}</td></tr>
+                <tr><td><strong>Age</strong></td><td>${calc.age} years</td></tr>
+                <tr><td><strong>Gender</strong></td><td>${formData.gender}</td></tr>
+                <tr><td><strong>Marital Status</strong></td><td>${formData.maritalStatus}</td></tr>
+                <tr><td><strong>Occupation</strong></td><td>${formData.occupation}</td></tr>
+                <tr><td><strong>City</strong></td><td>${formData.city}</td></tr>
+            </table>
+
+            <h2>2. Financial Position</h2>
+            <h3>2.1 Assets</h3>
+            <table>
+                <tr><th>Asset Class</th><th>Amount</th></tr>
+                <tr><td>Liquid Assets</td><td>${formatCurrency(calc.liquidAssets)}</td></tr>
+                <tr><td>Equity Assets</td><td>${formatCurrency(calc.equityAssets)}</td></tr>
+                <tr><td>Retirement Assets</td><td>${formatCurrency(calc.retirementAssets)}</td></tr>
+                <tr><td>Gold</td><td>${formatCurrency(calc.goldAssets)}</td></tr>
+                <tr><td>Real Estate</td><td>${formatCurrency(calc.realEstate)}</td></tr>
+                <tr><th>Total Assets</th><th>${formatCurrency(calc.totalAssets)}</th></tr>
+            </table>
+
+            <div class="highlight">
+                <h3>Net Worth: ${formatCurrency(calc.netWorth)}</h3>
+            </div>
+
+            <h2>3. Risk Profile Analysis</h2>
+            <div class="highlight">
+                <p><strong>Risk Score:</strong> ${calc.riskScore} out of 35</p>
+                <p><strong>Risk Profile:</strong> ${calc.riskProfile}</p>
+            </div>
+
+            <h2>4. Key Recommendations</h2>
+
+            ${calc.emergencyFundGap > 0 ? `
+            <div class="recommendation">
+                <h3>Priority 1: Emergency Fund</h3>
+                <p><strong>Required:</strong> ${formatCurrency(calc.emergencyFundRequired)}</p>
+                <p><strong>Gap:</strong> ${formatCurrency(calc.emergencyFundGap)}</p>
+            </div>
+            ` : ''}
+
+            ${calc.lifeInsuranceGap > 0 ? `
+            <div class="recommendation">
+                <h3>Priority 2: Life Insurance</h3>
+                <p><strong>Gap:</strong> ${formatCurrency(calc.lifeInsuranceGap)}</p>
+            </div>
+            ` : ''}
+
+            ${calc.section80CGap > 0 ? `
+            <div class="recommendation">
+                <h3>Priority 3: Tax Optimization</h3>
+                <p><strong>80C Gap:</strong> ${formatCurrency(calc.section80CGap)}</p>
+                <p><strong>Potential Tax Saving:</strong> ${formatCurrency(calc.potentialTaxSaving)}</p>
+            </div>
+            ` : ''}
+
+            <div class="footer">
+                <p><strong>RDA TAX ADVISORY SERVICES PVT LTD</strong></p>
+                <p>Office No. 102, Snehraj, Near Orchid Hotel, Radha Chowk, Baner Road, Baner, Pune - 411045</p>
+                <p>Phone: +91 8626045059 / +91 8983145059 | Email: info@rd-assoc.com</p>
+                <p style="margin-top: 20px; font-style: italic;">
+                    <strong>Disclaimer:</strong> This report is for guidance purposes only. Past performance is not indicative of future returns. 
+                    Please consult before making any investment decisions.
+                </p>
+            </div>
+        </body>
+        </html>
+    `;
+
+    const blob = new Blob([htmlContent], { type: 'application/msword' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    const timestamp = new Date().toISOString().slice(0,10);
+    a.download = `RDA_Financial_Plan_${formData.fullName.replace(/\s+/g, '_')}_${timestamp}.doc`;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+}
+
+function resetForm() {
+    if (confirm('Are you sure you want to start a new assessment? All current data will be cleared.')) {
+        localStorage.removeItem('financialPlanData');
+        location.reload();
+    }
+}
+
+window.onload = function() {
+    loadSavedData();
+    document.getElementById('financialPlanForm').addEventListener('change', autoSave);
+};
+</script>
+
+</body>
+</html>
